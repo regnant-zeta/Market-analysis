@@ -1,6 +1,12 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+st.set_page_config(
+    page_title="Luxury Sedan Analysis",
+    page_icon=":car:",  # You can change this emoji if you want!
+    layout="centered",  # Other options: "wide", "centered"
+    initial_sidebar_state="expanded",  # Opens the sidebar by default
+)
 
 # Title
 st.title("Luxury Sedan Market Analysis")
