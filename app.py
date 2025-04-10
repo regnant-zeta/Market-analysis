@@ -16,7 +16,7 @@ if page == "Market Overview":
     Welcome to Regnant Motors' market analysis tool.  
     Explore trends, sales data, and insights for luxury sedans.
     """)
-    st.image("https://cdn.pixabay.com/photo/2016/11/23/14/45/audi-1853312_960_720.jpg", caption="Luxury Sedan", use_column_width=True)
+    st.image("https://cdn.pixabay.com/photo/2016/11/23/14/45/audi-1853312_960_720.jpg", caption="Luxury Sedan", use_container_width=True)
 
 # Upload Data
 elif page == "Upload Your Data":
