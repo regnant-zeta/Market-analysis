@@ -15,14 +15,12 @@ st.title("Luxury Sedan Market Analysis")
 st.sidebar.title("Navigation")
 page = st.sidebar.selectbox("Go to", ["Market Overview", "Upload Your Data", "Insights"])
 
-# Market Overview
-if page == "Market Overview":
-    st.header("Global Luxury Sedan Market Overview")
-    st.write("""
-    Welcome to Regnant Motors' market analysis tool.  
-    Explore trends, sales data, and insights for luxury sedans.
-    """)
-    st.image("https://cdn.pixabay.com/photo/2016/11/23/14/45/audi-1853312_960_720.jpg", caption="Luxury Sedan", use_container_width=True)
+# Big Luxury Car Image
+st.image(
+    "https://images.unsplash.com/photo-1614790362262-f8b5f2e1aa82?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+    caption="Experience the Future of Luxury",
+    use_container_width=True
+)
 
 # Upload Data
 elif page == "Upload Your Data":
