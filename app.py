@@ -1,32 +1,54 @@
-import streamlit as st import pandas as pd import matplotlib.pyplot as plt
+import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
 
-Dummy Data for MVP
+# Title
+st.title("Luxury Sedan Market Analysis")
 
-luxury_sedan_data = { 'Brand': ['BMW', 'Mercedes', 'Audi', 'Tesla', 'Lexus'], 'Model': ['5 Series', 'E-Class', 'A6', 'Model S', 'ES'], 'Avg_Price_USD': [55000, 60000, 58000, 75000, 50000], 'Sales_2024': [45000, 40000, 38000, 52000, 30000], 'Top_Feature': ['Luxury Interior', 'Safety Tech', 'Drive Comfort', 'Autonomous', 'Hybrid Tech'] }
+# Sidebar
+st.sidebar.title("Navigation")
+page = st.sidebar.selectbox("Go to", ["Market Overview", "Upload Your Data", "Insights"])
 
-df = pd.DataFrame(luxury_sedan_data)
+# Market Overview
+if page == "Market Overview":
+    st.header("Global Luxury Sedan Market Overview")
+    st.write("""
+    Welcome to Regnant Motors' market analysis tool.  
+    Explore trends, sales data, and insights for luxury sedans.
+    """)
+    st.image("https://cdn.pixabay.com/photo/2016/11/23/14/45/audi-1853312_960_720.jpg", caption="Luxury Sedan", use_column_width=True)
 
-Streamlit App
+# Upload Data
+elif page == "Upload Your Data":
+    st.header("Upload Your Sedan Market Data (CSV)")
 
-st.set_page_config(page_title="Luxury Sedan Market Analysis", layout="centered")
+    uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
 
-st.title("Luxury Sedan Market Analysis") st.markdown("Explore trends, features, and pricing insights for luxury sedans.")
+    if uploaded_file is not None:
+        data = pd.read_csv(uploaded_file)
+        st.success("File Uploaded Successfully!")
+        st.dataframe(data)
 
-Sales Chart
+        if st.checkbox("Show Summary"):
+            st.write(data.describe())
 
-st.header("Sales Trends") fig, ax = plt.subplots() ax.bar(df['Model'], df['Sales_2024'], color='skyblue') ax.set_xlabel("Sedan Model") ax.set_ylabel("Units Sold in 2024") ax.set_title("Luxury Sedan Sales Comparison") st.pyplot(fig)
+        if st.checkbox("Plot Sales Trend"):
+            if "Year" in data.columns and "Sales" in data.columns:
+                fig, ax = plt.subplots()
+                ax.plot(data["Year"], data["Sales"], marker='o')
+                plt.xlabel("Year")
+                plt.ylabel("Sales Units")
+                plt.title("Luxury Sedan Sales Trend")
+                st.pyplot(fig)
+            else:
+                st.error("Columns 'Year' and 'Sales' not found in the data.")
 
-Price Table
-
-st.header("Pricing Overview") st.dataframe(df[['Brand', 'Model', 'Avg_Price_USD']])
-
-Top Features
-
-st.header("Top Desired Features") for idx, row in df.iterrows(): st.write(f"{row['Model']}: {row['Top_Feature']}")
-
-Consumer Sentiment Summary
-
-st.header("Consumer Sentiment Insights") st.success("Consumers prefer sedans with autonomous driving, luxurious interiors, and advanced hybrid technology.")
-
-st.markdown("---") st.caption("Zeta Motors - Powered by AI Market Insights")
-
+# Insights
+elif page == "Insights":
+    st.header("Top Insights")
+    st.write("""
+    - Luxury sedans are showing growth in emerging markets.
+    - Electric luxury sedans are rising in demand.
+    - Consumers prefer eco-friendly and smart technology vehicles.
+    """)
+    st.balloons()
