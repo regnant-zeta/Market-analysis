@@ -18,8 +18,7 @@ if page == "Market Overview":
     """)
     
     # Display an image
-    st.image(
-        "https://images.unsplash.com/photo-1614790362262-f8b5f2e1aa82?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+    st.image("https://www.vecteezy.com/photo/52290041-sleek-silver-luxury-car-parked-in-a-modern-cityscape-under-vibrant-evening-lights,
         caption="Experience the Future of Luxury",
         use_column_width=True
     )
